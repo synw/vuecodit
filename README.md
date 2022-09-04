@@ -65,13 +65,7 @@ import python from 'highlight.js/lib/languages/python';
 import hljs from 'highlight.js/lib/core';
 hljs.registerLanguage('python', python);
 
-const code = `print('starting python script')
-a = 1
-b = 2
-print('finished python script')
-c = a + b
-# return value
-c`;
+const code = `print('hello world')`;
 
 function codeChange(e) {
   console.log("Code change", e)
