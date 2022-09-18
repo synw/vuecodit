@@ -29,7 +29,7 @@ export default defineComponent({
   },
   emits: ["edit"],
   setup(props, { emit }) {
-    const { code } = toRefs(props);
+    const { hljs, code } = toRefs(props);
     const height = ref('0');
     const { textarea, input } = useTextareaAutosize({
       onResize: () => {
@@ -45,7 +45,7 @@ export default defineComponent({
     const parsedCode = computed(() => {
       //console.log("Parsed code change", width.value, height.value);
       sig()
-      return props.hljs.highlight(input.value, { language: props.lang }).value;
+      return hljs.value.highlight(input.value, { language: props.lang }).value;
     })
 
     onBeforeMount(() => {
