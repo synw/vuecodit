@@ -1,6 +1,6 @@
 <template>
-  <div class="relative" ref="preview" :style="`height:${height}`">
-    <textarea
+  <div class="relative" :style="`height:${height}`">
+    <textarea :id="id"
       class="absolute top-0 left-0 z-30 w-full px-2 py-3 leading-6 text-transparent bg-transparent resize-none code-block"
       ref="textarea" v-model="input" spellcheck="false">
       </textarea>
@@ -25,15 +25,19 @@ export default defineComponent({
     lang: {
       type: String,
       required: true,
+    },
+    id: {
+      type: String
     }
   },
   emits: ["edit"],
   setup(props, { emit }) {
     const { hljs, code } = toRefs(props);
+    const id = props.id ?? `${+ new Date()}`;
     const height = ref('0');
     const { textarea, input } = useTextareaAutosize({
       onResize: () => {
-        const style = window.getComputedStyle(document.getElementsByClassName("code-block")[0]);
+        const style = window.getComputedStyle(document.getElementById(id));
         height.value = style.height;
       }
     });
@@ -57,6 +61,7 @@ export default defineComponent({
       textarea,
       input,
       height,
+      id,
     };
   },
 });
