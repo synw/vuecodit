@@ -1,6 +1,6 @@
 {
   "name": "vuecodit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A little code editor for Vuejs",
   "repository": "https://github.com/synw/vuecodit",
   "scripts": {

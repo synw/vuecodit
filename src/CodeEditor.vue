@@ -8,63 +8,60 @@
   </div>
 </template>
 
-<script lang="js">
-import { defineComponent, toRefs, ref, onBeforeMount, computed } from "vue";
+<script setup lang="ts">
+import { ref, computed, watchEffect, nextTick } from "vue";
 import { useTextareaAutosize } from '@vueuse/core';
 
-export default defineComponent({
-  props: {
-    hljs: {
-      type: Object,
-      required: true,
-    },
-    code: {
-      type: String,
-      required: true,
-    },
-    lang: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String
-    }
+const props = defineProps({
+  hljs: {
+    type: Object,
+    required: true,
   },
-  emits: ["edit"],
-  setup(props, { emit }) {
-    const { hljs, code } = toRefs(props);
-    const id = props.id ?? `${+ new Date()}`;
-    const height = ref('0');
-    const { textarea, input } = useTextareaAutosize({
-      onResize: () => {
-        const style = window.getComputedStyle(document.getElementById(id));
-        height.value = style.height;
-      }
-    });
-
-    function sig() {
-      emit("edit", input.value);
-    }
-
-    const parsedCode = computed(() => {
-      //console.log("Parsed code change", width.value, height.value);
-      sig()
-      return hljs.value.highlight(input.value, { language: props.lang }).value;
-    })
-
-    onBeforeMount(() => {
-      input.value = code.value;
-    });
-
-    return {
-      parsedCode,
-      textarea,
-      input,
-      height,
-      id,
-    };
+  code: {
+    type: String,
+    required: true,
   },
+  lang: {
+    type: String,
+    required: true,
+  },
+  id: {
+    type: String
+  }
+})
+const emit = defineEmits(["edit"]);
+const id = props.id ?? `${+ new Date()}`;
+const height = ref('0');
+const codeNum = ref(0);
+const { textarea, input } = useTextareaAutosize({
+  onResize: getSize,
+  watch: codeNum
 });
+
+function getSize() {
+  // console.log("RESIZE", codeNum.value);
+  const style = window.getComputedStyle(textarea.value);
+  height.value = style.height;
+  // console.log("->", height.value)
+}
+
+function sig() {
+  emit("edit", input.value);
+}
+
+const parsedCode = computed(() => {
+  //console.log("Parsed code change", width.value, height.value);
+  sig()
+  return props.hljs.highlight(input.value, { language: props.lang }).value;
+})
+
+watchEffect(() => {
+  input.value = props.code;
+  nextTick(() => {
+    ++codeNum.value
+  })
+});
+
 </script>
 
 <style lang="sass" scoped>
