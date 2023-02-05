@@ -1,6 +1,6 @@
 {
   "name": "vuecodit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A little code editor for Vuejs",
   "repository": "https://github.com/synw/vuecodit",
   "scripts": {
@@ -40,6 +40,7 @@
   "style": "./dist/style.css",
   "main": "./dist/vuecodit.umd.js",
   "module": "./dist/vuecodit.es.js",
+  "types": "./dist/main.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vuecodit.es.js"
