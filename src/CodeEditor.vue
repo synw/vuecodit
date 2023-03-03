@@ -3,7 +3,7 @@
     <textarea :id="id"
       class="absolute top-0 left-0 z-30 w-full px-2 py-3 leading-6 text-transparent bg-transparent resize-none code-block"
       ref="textarea" v-model="input" spellcheck="false">
-      </textarea>
+                                    </textarea>
     <code class="absolute top-0 left-0 z-20 code-preview " v-html="parsedCode"></code>
   </div>
 </template>
@@ -39,10 +39,12 @@ const { textarea, input } = useTextareaAutosize({
 });
 
 function getSize() {
-  // console.log("RESIZE", codeNum.value);
   const style = window.getComputedStyle(textarea.value);
-  height.value = style.height;
-  // console.log("->", height.value)
+  // @ts-ignore
+  const lh = style["line-height"].replace("px", "");
+  const h = parseInt(style.height.replace("px", "")) - parseInt(lh);
+  height.value = `${h}px`;
+  console.log("->", height.value)
 }
 
 function sig() {
