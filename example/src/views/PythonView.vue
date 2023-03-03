@@ -1,13 +1,13 @@
 <template>
   <div class="container mx-auto">
-    <div class="p-8">
+    <div class="p-3 mt-5 editor">
       <code-editor :code="code" lang="python" @edit="codeChange($event)" :hljs="hljs"></code-editor>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { CodeEditor } from "vuecodit";
+import CodeEditor from "@/packages/editor/CodeEditor.vue";
 import "vuecodit/style.css";
 import "highlight.js/styles/stackoverflow-light.css";
 import python from 'highlight.js/lib/languages/python';
@@ -26,3 +26,8 @@ function codeChange(e) {
   console.log("Code change", e)
 }
 </script>
+
+<style lang="sass">
+.editor
+  @apply border border-neutral-200 bg-neutral-100 dark:bg-neutral-900 dark:border-neutral-700
+</style>
