@@ -4,7 +4,7 @@
 
 A little code editor for Vuejs 3. Syntax highlighting with [Highlightjs](https://highlightjs.org/)
 
-[Demo](https://synw.github.io/vuecodit/) - [Example](example/)
+[Documentation](https://synw.github.io/vuecodit/)
 
 ## Install
 

@@ -1,0 +1,1 @@
+import{d as n,o,k as r,u as a,H as s,l,m as u}from"./index-f68f4800.js";const c=n({__name:"[...all]",setup(t){return(e,p)=>(o(),r(a(u),{hljs:a(s),nav:a(l),url:e.$route.path,"on-open":e.$router.push},null,8,["hljs","nav","url","on-open"]))}});export{c as default};
