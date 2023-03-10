@@ -20,8 +20,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-//import { CodeEditor } from "vuecodit";
-import CodeEditor from "@/CodeEditor.vue";
+import { CodeEditor } from "vuecodit";
+//import CodeEditor from "@/CodeEditor_OLD.vue";
 //import "vuecodit/style.css";
 //import "@/../../../dist/style.css";
 import { StaticCodeBlock } from '@docdundee/vue';

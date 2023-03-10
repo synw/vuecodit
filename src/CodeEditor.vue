@@ -69,11 +69,11 @@ watchEffect(() => {
   line-height: 1.5
   font-size: 16px
   white-space: pre
-  word-wrap: normal  
+  word-wrap: normal
 .code-block
   overflow-y: hidden
   caret-color: rgba(127, 127, 127)
-  @apply border-transparent focus:border-transparent focus:ring-0
+  @apply border-transparent focus:border-transparent focus:ring-0 overflow-y-hidden
   @apply absolute top-0 left-0 z-30 w-full leading-6 text-transparent bg-transparent resize-none
 .code-preview
   @apply absolute top-0 left-0 z-20 w-full
